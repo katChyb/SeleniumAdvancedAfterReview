@@ -4,6 +4,7 @@ browser:
   browserAttachScreenshot: false
   headlessMode: true
   browserTimeout: 60
+  wait: 5
 environments:
   test_env:
     envName: test_env
@@ -17,6 +18,9 @@ environments:
     sliderStartingValue: 9
     sliderEndValue: 29
     percentFactor: 20
+    menCategoryText: T-shirts, sweaters, hoodies and men's accessories.
+    stationeryCategoryText: Notebooks, agendas, office accessories
+    artCategoryText: Framed poster and vector images
 
 
 

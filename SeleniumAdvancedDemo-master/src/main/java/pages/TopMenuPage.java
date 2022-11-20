@@ -58,11 +58,52 @@ public class TopMenuPage extends BasePage {
     @FindBy(id = "category-9")
     public WebElement artCategory;
 
-    public void clickInArtCategory(){
+
+    public void clickInArtCategory() {
         artCategory.click();
     }
 
+    @FindBy(id = "category-6")
+    public WebElement accessoriesCategory;
+
+    @FindBy(id = "category-3")
+    public WebElement clothesCategory;
+
+    public TopMenuPage moveMouseToClothes() {
+        mouseHover(clothesCategory);
+        return this;
+
+    }
 
 
+    public TopMenuPage moveMouseToArt() {
+        mouseHover(artCategory);
+        return this;
+    }
 
+    public TopMenuPage moveMouseToAccessories() {
+        mouseHover(accessoriesCategory);
+        return this;
+    }
+
+    @FindBy(id = "category-4")
+    public WebElement menCategory;
+
+    public void clickInMenCategory() {
+        menCategory.click();
+    }
+
+    @FindBy(id = "category-7")
+    public WebElement stationeryCategory;
+
+    public void clickInStationeryCategory() {
+        stationeryCategory.click();
+    }
+
+    @FindBy(id = "js-product-list-header")
+    public WebElement productListHeader;
+
+    public String getProductListHeader() {
+        return productListHeader.getText();
+    }
 }

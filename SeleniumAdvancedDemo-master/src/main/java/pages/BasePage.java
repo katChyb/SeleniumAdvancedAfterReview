@@ -1,9 +1,13 @@
 package pages;
 
+import configuration.helper.WebListener;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.interactions.Coordinates;
+import org.openqa.selenium.interactions.Locatable;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.events.internal.EventFiringMouse;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
@@ -18,13 +22,17 @@ public class BasePage {
         PageFactory.initElements(driver, this);
         this.driver = driver;
         actions = new Actions(driver);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
     }
 
     public WebDriver driver;
     public Actions actions;
     public WebDriverWait wait;
+
+    private EventFiringMouse eventFiringMouse;
+
+    private WebListener webListener = new WebListener();
 
     Logger logger = LoggerFactory.getLogger(BasePage.class);
 
@@ -59,4 +67,15 @@ public class BasePage {
     public void waitUntilDisappear(WebElement element) {
         wait.until(ExpectedConditions.invisibilityOf(element));
     }
+
+    protected void mouseHover(WebElement element) {
+        waitToBeVisible(element);
+        eventFiringMouse = new EventFiringMouse(driver, webListener);
+        Locatable item = (Locatable) element;
+        Coordinates coordinates = item.getCoordinates();
+        eventFiringMouse.mouseMove(coordinates);
+
+        logger.info("Mouse hover on element: " + element.getText());
+    }
+
 }
