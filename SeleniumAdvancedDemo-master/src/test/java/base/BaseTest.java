@@ -9,6 +9,8 @@ import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.time.Duration;
+
 public class BaseTest {
     private static Logger log = LoggerFactory.getLogger(BaseTest.class);
     public WebDriver driver;
