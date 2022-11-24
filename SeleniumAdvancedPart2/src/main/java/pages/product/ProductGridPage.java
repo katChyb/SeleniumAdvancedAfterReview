@@ -3,6 +3,8 @@ package pages.product;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pages.BasePage;
 
 import java.util.List;
@@ -13,7 +15,7 @@ public class ProductGridPage extends BasePage {
         super(driver);
     }
 
-
+    private static Logger log = LoggerFactory.getLogger(ProductGridPage.class);
     @FindBy(css = ".product-title")
     private List<WebElement> productGrid;
 
@@ -24,7 +26,8 @@ public class ProductGridPage extends BasePage {
     }
 
     public String getNumberProductsFromGrid() {
-        return "There are " + String.valueOf(productGrid.size()) + " products.";
+        log.info("number products from grid: " + productGrid.size());
+        return String.valueOf(productGrid.size());
     }
 
 
@@ -36,6 +39,7 @@ public class ProductGridPage extends BasePage {
     private WebElement numberOfProductsFoundLabel;
 
     public String getNumberOfFoundProductsLabel() {
+        log.info("number products from label: " + numberOfProductsFoundLabel.getText());
         return numberOfProductsFoundLabel.getText();
     }
 
@@ -43,7 +47,7 @@ public class ProductGridPage extends BasePage {
     private List <WebElement> listOfProductPriceFromGrid;
 
 
-    public Double getPriceFromProductGrid (int i){
+    public Double getProductPrice(int i){
         return getPrice(listOfProductPriceFromGrid.get(i));
     }
 

@@ -4,8 +4,6 @@ import base.Pages;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 
 public class FiltersTest extends Pages {
@@ -20,7 +18,7 @@ public class FiltersTest extends Pages {
 
         for (int i = 0; i < productGridPage.getSizeOfProductList(); i++) {
 
-            softly.assertThat(productGridPage.getPriceFromProductGrid(i)).isBetween((Double.valueOf(System.getProperty("minPrice"))),
+            softly.assertThat(productGridPage.getProductPrice(i)).isBetween((Double.valueOf(System.getProperty("minPrice"))),
                     Double.valueOf(System.getProperty("maxPrice")));
         }
         softly.assertAll();

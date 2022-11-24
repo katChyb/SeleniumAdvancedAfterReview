@@ -16,20 +16,19 @@ public class BaseTest {
     public WebDriver driver;
 
     private static AllProperties allProperties;
-    private static BrowserSetup browserSetup;
+
 
     @BeforeAll
     static void setupDriver() {
 
         allProperties = AllProperties.getInstance();
-        browserSetup = new BrowserSetup();
         log.info(">>>>>>>> WebDriver is set up <<<<<<<<<");
     }
 
     @BeforeEach
     void setup() {
 
-        driver = browserSetup.getDriver();
+        driver = new BrowserSetup().getDriver();
         log.info(">>>>>>>> Chrome window is Maximized <<<<<<<<<");
     }
 

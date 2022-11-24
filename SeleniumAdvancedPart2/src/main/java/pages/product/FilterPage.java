@@ -28,14 +28,14 @@ public class FilterPage extends BasePage {
     public WebElement rightSlider;
 
 
-    public void moveSlider() throws InterruptedException {
+    public void moveSlider()  {
 
         moveRightSlider();
         moveLeftSlider();
 
     }
 
-    public void moveLeftSlider() throws InterruptedException {
+    public void moveLeftSlider() {
 
         waitToBeVisible(priceSliderArt);
 
@@ -59,7 +59,7 @@ public class FilterPage extends BasePage {
     }
 
 
-    public void moveRightSlider() throws InterruptedException {
+    public void moveRightSlider()   {
 
         waitToBeVisible(priceSliderArt);
 

@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
+import java.util.Locale;
 
 public class TopMenuPage extends BasePage {
 
@@ -50,10 +51,18 @@ public class TopMenuPage extends BasePage {
         return topMenuCategories.size();
     }
 
-    public WebElement getMainCategory(int i) {
-        return topMenuCategories.get(i);
+    public String getMainCategoryName(int i) {
+        return topMenuCategories.get(i).getText();
     }
 
+    public void clickInMainCategory(int i) {
+        click(topMenuCategories.get(i));
+    }
+
+    public String getCategoryTitle() {
+        String title = driver.getTitle().toUpperCase(Locale.ROOT);
+        return title;
+    }
 
     @FindBy(id = "category-9")
     public WebElement artCategory;
