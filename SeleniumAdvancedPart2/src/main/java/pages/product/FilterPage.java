@@ -1,15 +1,10 @@
 package pages.product;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.BasePage;
-
-import static org.openqa.selenium.By.cssSelector;
 
 public class FilterPage extends BasePage {
     public FilterPage(WebDriver driver) {
@@ -27,61 +22,48 @@ public class FilterPage extends BasePage {
     @FindBy(css = "a.ui-slider-handle:nth-child(3)")
     public WebElement rightSlider;
 
+    @FindBy(css =".spinner")
+    public WebElement spinner;
 
-    public void moveSlider()  {
+    @FindBy(css ="[data-slider-label] p")
+    public WebElement sliderPriceRangeLabel;
 
-        moveRightSlider();
-        moveLeftSlider();
 
+    public double getMinMaxPriceFromSlider(WebElement element, int i){
+        return Double.parseDouble(element.getText().replace(System.getProperty("currencySymbolToReplace"),"").split("-")[i]);
     }
 
-    public void moveLeftSlider() {
+    public double getMinimumPriceRange(){
+        return getMinMaxPriceFromSlider(sliderPriceRangeLabel, Integer.parseInt(System.getProperty("sliderStartingValue")));
+    }
+    public double getMaximumPriceRange(){
+        return getMinMaxPriceFromSlider(sliderPriceRangeLabel,Integer.parseInt(System.getProperty("sliderEndValue")));
+    }
+
+    public void moveSlider(WebElement element, double price, double minMaxPrice) {
 
         waitToBeVisible(priceSliderArt);
 
-        Dimension sliderSize = priceSliderArt.getSize();
-        int sliderWidth = sliderSize.getWidth();
+        while (price != minMaxPrice){
+            if(price >= minMaxPrice){
+                actions.clickAndHold(element).sendKeys(Keys.ARROW_RIGHT).perform();
+                minMaxPrice++;
+            }
+            else {
+                actions.clickAndHold(element).sendKeys(Keys.ARROW_LEFT).perform();
+                minMaxPrice--;
+            }
+        }
 
-
-        double A = Integer.parseInt(System.getProperty("minPrice"));
-        double B = Integer.parseInt(System.getProperty("sliderStartingValue"));
-        double C = Integer.parseInt(System.getProperty("percentFactor"));
-        double increment = ((A - B) / C) * 10;
-
-        int offsetPositionLeftSlider = (int) (((sliderWidth * Double.parseDouble(String.valueOf(increment))) / 10));
-
-
-        Actions builder = new Actions(driver);
-        builder.clickAndHold(leftSlider);
-        builder.moveByOffset(offsetPositionLeftSlider, 0).perform();
-        builder.release().perform();
-        wait.until(ExpectedConditions.invisibilityOf(driver.findElement(cssSelector(".spinner"))));
+        waitUntilDisappear(spinner);
     }
 
 
-    public void moveRightSlider()   {
-
-        waitToBeVisible(priceSliderArt);
-
-        Dimension sliderSize = priceSliderArt.getSize();
-        int sliderWidth = sliderSize.getWidth();
-
-
-        double A = Integer.parseInt(System.getProperty("maxPrice"));
-        double B = Integer.parseInt(System.getProperty("sliderEndValue"));
-        double C = Integer.parseInt(System.getProperty("percentFactor"));
-        double decrement = -((B - A) / C) * 10;
-
-        int offsetPositionRightSlider = (int) (((sliderWidth * Double.parseDouble(String.valueOf(decrement))) / 10));
-
-
-        Actions builder = new Actions(driver);
-        builder.clickAndHold(rightSlider);
-        builder.moveByOffset(offsetPositionRightSlider, 0).perform();
-        builder.release().perform();
-        wait.until(ExpectedConditions.invisibilityOf(driver.findElement(cssSelector(".spinner"))));
-
+    public void moveLeftSliderToGivenPrice(){
+        moveSlider(leftSlider, Double.parseDouble(System.getProperty("minPrice")), getMinimumPriceRange());
     }
-
+    public void moveRightSliderToGivenPrice(){
+        moveSlider(rightSlider,Double.parseDouble(System.getProperty("maxPrice")),getMaximumPriceRange());
+    }
 
 }

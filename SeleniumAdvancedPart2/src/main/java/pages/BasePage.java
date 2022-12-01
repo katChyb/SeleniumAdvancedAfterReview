@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BasePage {
@@ -66,6 +67,18 @@ public class BasePage {
 
     public void waitUntilDisappear(WebElement element) {
         wait.until(ExpectedConditions.invisibilityOf(element));
+    }
+
+    public String getTextOfWebElement(WebElement element){
+        return element.getText();
+    }
+
+    public List<String> getNames(List<WebElement> list){
+        List<String> namesList = new ArrayList<>();
+        for (WebElement element : list) {
+            namesList.add(getTextOfWebElement(element));
+        }
+        return namesList;
     }
 
     protected void mouseHover(WebElement element) {

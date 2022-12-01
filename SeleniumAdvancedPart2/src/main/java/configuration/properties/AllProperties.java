@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class AllProperties {
     private static final Logger logger = LoggerFactory.getLogger(AllProperties.class);
- //   private static Object AllPropertiesSingleton;
+
 
     private List<EnvironmentSpecification> listOfEnvironments;
 

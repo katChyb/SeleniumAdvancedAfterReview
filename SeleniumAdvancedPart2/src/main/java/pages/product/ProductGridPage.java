@@ -1,5 +1,6 @@
 package pages.product;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,39 +18,46 @@ public class ProductGridPage extends BasePage {
 
     private static Logger log = LoggerFactory.getLogger(ProductGridPage.class);
     @FindBy(css = ".product-title")
-    private List<WebElement> productGrid;
-
-    public String getRandomProductNameFromGrid() {
-        int gridListSize = productGrid.size();
-        return productGrid.get(new Random().nextInt(gridListSize)).getText();
-
-    }
-
-    public String getNumberProductsFromGrid() {
-        log.info("number products from grid: " + productGrid.size());
-        return String.valueOf(productGrid.size());
-    }
-
-
-    public int getSizeOfProductList() {
-        return productGrid.size();
-    }
+    private List<WebElement> productNamesFromGrid;
 
     @FindBy(css = ".total-products")
     private WebElement numberOfProductsFoundLabel;
+
+    @FindBy(css = "span.price")
+    private List <WebElement> listOfProductPriceFromGrid;
+
+    @FindBy(id = "js-product-list")
+    private List<WebElement> searchResultProductGrid;
+
+
+    public String getRandomProductNameFromGrid() {
+        int gridListSize = productNamesFromGrid.size();
+        return productNamesFromGrid.get(new Random().nextInt(gridListSize)).getText();
+    }
+
+    public String getNumberProductsFromGrid() {
+        log.info("number products from grid: " + productNamesFromGrid.size());
+        return String.valueOf(productNamesFromGrid.size());
+    }
+
+    public int getSizeOfProductList() {
+        return productNamesFromGrid.size();
+    }
+
 
     public String getNumberOfFoundProductsLabel() {
         log.info("number products from label: " + numberOfProductsFoundLabel.getText());
         return numberOfProductsFoundLabel.getText();
     }
 
-    @FindBy(css = "span.price")
-    private List <WebElement> listOfProductPriceFromGrid;
-
-
     public Double getProductPrice(int i){
         return getPrice(listOfProductPriceFromGrid.get(i));
     }
 
 
+    public String getNameOfFoundProduct() {
+        String nameOfProduct = searchResultProductGrid.get(0).findElement(new By.ByCssSelector(".product-title")).getText();
+        log.info("name of found product " + nameOfProduct);
+        return nameOfProduct;
+    }
 }

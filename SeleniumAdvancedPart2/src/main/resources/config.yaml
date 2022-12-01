@@ -15,9 +15,8 @@ environments:
     wantedProduct: HUMMINGBIRD
     minPrice: 9
     maxPrice: 13
-    sliderStartingValue: 9
-    sliderEndValue: 29
-    percentFactor: 20
+    sliderStartingValue: 0
+    sliderEndValue: 1
     menCategoryText: T-shirts, sweaters, hoodies and men's accessories.
     stationeryCategoryText: Notebooks, agendas, office accessories
     artCategoryText: Framed poster and vector images

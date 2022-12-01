@@ -21,18 +21,4 @@ public class YamlReader {
         return config;
     }
 
-
-//private final Config config;
-//
-//    private final static Logger logger = LoggerFactory.getLogger("YamlReader.class");
-////zwracanie mapy klucz - wartosc
-//   @SneakyThrows
-//   public YamlReader(){
-//           ObjectMapper  objectMapper= new ObjectMapper(new YAMLFactory());
-//           this.config = objectMapper.readValue(new File("src/main/resources/config.yaml"), Config.class);
-//       logger.info("<<<<<<<<<<< Config yaml file has been read >>>>>>>>>>");
-//       }
-//
-//    public Config getConfig() {return config;}
-
 }

@@ -16,36 +16,52 @@ public class TopMenuPage extends BasePage {
     @FindBy(css = ".ui-autocomplete-input")
     private WebElement searchInputBox;
 
+    @FindBy(css = "button .search")
+    private WebElement searchBoxButton;
+    @FindBy(css = "ul.ui-autocomplete")
+    private WebElement dropdownList;
+    @FindBy(css = "span.product")
+    private List<WebElement> searchedProductDropdown;
+    @FindBy(xpath = "//a[@data-depth=0]")
+    private List<WebElement> topMenuCategories;
+
+    @FindBy(id = "category-9")
+    public WebElement artCategory;
+
+    @FindBy(id = "category-6")
+    public WebElement accessoriesCategory;
+
+    @FindBy(id = "category-3")
+    public WebElement clothesCategory;
+
+    @FindBy(id = "category-4")
+    public WebElement menCategory;
+
+    @FindBy(id = "js-product-list-header")
+    public WebElement productListHeader;
+
+    @FindBy(id = "category-7")
+    public WebElement stationeryCategory;
+
+
     public void inputSearchProductByText(String text) {
         sendKeys(searchInputBox, text);
     }
-
-    @FindBy(css = "button .search")
-    private WebElement searchBoxButton;
 
     public void triggerSearchProduct() {
         searchBoxButton.click();
     }
 
-    @FindBy(css = "ul.ui-autocomplete")
-    private WebElement dropdownList;
 
     public void waitForDropdownToLoad() {
         waitToBeVisible(dropdownList);
     }
 
-    @FindBy(css = "span.product")
-    private List<WebElement> searchedProductDropdown;
 
-
-    //https://stackoverflow.com/questions/47310127/assert-that-element-from-listwebelement-contains-some-text
-    public boolean isDropdownContainingText(String text) {
-        return searchedProductDropdown.stream().anyMatch(e -> e.getText().trim().contains(text));
-
+    public List<String> getProductNameList() {
+        return getNames(searchedProductDropdown);
     }
 
-    @FindBy(xpath = "//a[@data-depth=0]")
-    private List<WebElement> topMenuCategories;
 
     public int getSizeOfMenuCategories() {
         return topMenuCategories.size();
@@ -64,19 +80,11 @@ public class TopMenuPage extends BasePage {
         return title;
     }
 
-    @FindBy(id = "category-9")
-    public WebElement artCategory;
-
 
     public void clickInArtCategory() {
         artCategory.click();
     }
 
-    @FindBy(id = "category-6")
-    public WebElement accessoriesCategory;
-
-    @FindBy(id = "category-3")
-    public WebElement clothesCategory;
 
     public TopMenuPage moveMouseToClothes() {
         mouseHover(clothesCategory);
@@ -95,24 +103,18 @@ public class TopMenuPage extends BasePage {
         return this;
     }
 
-    @FindBy(id = "category-4")
-    public WebElement menCategory;
 
     public void clickInMenCategory() {
         menCategory.click();
     }
 
-    @FindBy(id = "category-7")
-    public WebElement stationeryCategory;
-
     public void clickInStationeryCategory() {
         stationeryCategory.click();
     }
 
-    @FindBy(id = "js-product-list-header")
-    public WebElement productListHeader;
-
     public String getProductListHeader() {
         return productListHeader.getText();
     }
+
+
 }

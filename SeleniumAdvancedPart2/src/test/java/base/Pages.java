@@ -5,13 +5,12 @@ import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.interactions.Actions;
 import pages.TopMenuPage;
-import pages.User.MyAccountPage;
-import pages.User.RegistrationPage;
-import pages.User.SignInPage;
+import pages.user.MyAccountPage;
+import pages.user.RegistrationPage;
+import pages.user.SignInPage;
 import pages.product.FilterPage;
 import pages.product.ProductDetailsPage;
 import pages.product.ProductGridPage;
-import pages.product.SearchProductResultPage;
 
 public class Pages extends BaseTest {
 
@@ -21,13 +20,8 @@ public class Pages extends BaseTest {
     public RegistrationPage registrationPage;
     public SignInPage signInPage;
     public MyAccountPage myAccountPage;
-
-    public SearchProductResultPage searchProductResultPage;
-
     public FilterPage filterPage;
-
     public SoftAssertions softly;
-
     public Actions action;
 
 
@@ -39,7 +33,6 @@ public class Pages extends BaseTest {
         registrationPage = new RegistrationPage(driver);
         signInPage = new SignInPage(driver);
         myAccountPage = new MyAccountPage(driver);
-        searchProductResultPage = new SearchProductResultPage(driver);
         filterPage = new FilterPage(driver);
         softly = new SoftAssertions();
         action = new Actions(driver);

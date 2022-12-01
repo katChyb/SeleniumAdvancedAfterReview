@@ -16,7 +16,7 @@ public class ProductAndCategories extends Pages {
     SoftAssertions softly = new SoftAssertions();
 
     @Test
-  //  @RepeatedTest(10)
+    @RepeatedTest(10)
     @DisplayName("Categories Test")
     public void categoriesTest() {
         topMenuPage.getSizeOfMenuCategories();
