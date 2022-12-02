@@ -18,13 +18,16 @@ public class SearchTests extends Pages {
     public void RandomProductSearchTest() {
 
         String productName = productGridPage.getRandomProductNameFromGrid();
-        System.out.println("productName " + productName);
+
         topMenuPage.inputSearchProductByText(productName);
         topMenuPage.triggerSearchProduct();
+
         String numberOfProductsFound = productGridPage.getNumberProductsFromGrid();
         softly.assertThat(numberOfProductsFound).isEqualTo(System.getProperty("amountOfExpectedSearchResultsList"));
+
         String nameOfFoundProduct = productGridPage.getNameOfFoundProduct();
         softly.assertThat(nameOfFoundProduct).isEqualTo(productName);
+
         softly.assertAll();
 
     }

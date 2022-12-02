@@ -23,7 +23,7 @@ public class BasePage {
         PageFactory.initElements(driver, this);
         this.driver = driver;
         actions = new Actions(driver);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(Long.parseLong(System.getProperty("wait"))));
 
     }
 
