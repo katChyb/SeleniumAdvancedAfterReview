@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 public class FiltersTest extends Pages {
 
     @Test
- //   @RepeatedTest(10)
+    @RepeatedTest(10)
     @DisplayName("Filters test-slider")
     public void filtersTestSlider() {
         topMenuPage.clickInArtCategory();
