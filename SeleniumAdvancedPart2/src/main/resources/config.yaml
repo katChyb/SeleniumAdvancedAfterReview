@@ -20,6 +20,9 @@ environments:
     menCategoryText: T-shirts, sweaters, hoodies and men's accessories.
     stationeryCategoryText: Notebooks, agendas, office accessories
     artCategoryText: Framed poster and vector images
+    BasketPopupTestWantedProduct: THE BEST IS YET POSTER
+    BasketPopupTestQuantity: 3
+    shippingPrice: 7
 
 
 

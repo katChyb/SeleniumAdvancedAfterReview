@@ -24,7 +24,7 @@ public class ProductGridPage extends BasePage {
     private WebElement numberOfProductsFoundLabel;
 
     @FindBy(css = "span.price")
-    private List <WebElement> listOfProductPriceFromGrid;
+    private List<WebElement> listOfProductPriceFromGrid;
 
     @FindBy(id = "js-product-list")
     private List<WebElement> searchResultProductGrid;
@@ -50,7 +50,7 @@ public class ProductGridPage extends BasePage {
         return numberOfProductsFoundLabel.getText();
     }
 
-    public Double getProductPrice(int i){
+    public Double getProductPrice(int i) {
         return getPrice(listOfProductPriceFromGrid.get(i));
     }
 
@@ -59,5 +59,19 @@ public class ProductGridPage extends BasePage {
         String nameOfProduct = searchResultProductGrid.get(0).findElement(new By.ByCssSelector(".product-title")).getText();
         log.info("name of found product " + nameOfProduct);
         return nameOfProduct;
+    }
+
+    public void openSelectedProduct(String name) {
+        clickProductByName(productNamesFromGrid, name);
+    }
+
+    public void clickProductByName(List<WebElement> list, String productName) {
+        for (WebElement productNameOnList : list) {
+            String name = productNameOnList.getText();
+            if (name.equals(productName)) {
+                click(productNameOnList);
+                break;
+            }
+        }
     }
 }

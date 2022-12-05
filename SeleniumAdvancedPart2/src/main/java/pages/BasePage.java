@@ -1,6 +1,8 @@
 package pages;
 
 import configuration.helper.WebListener;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -50,10 +52,10 @@ public class BasePage {
     public void clearAndSendKeys(WebElement element, String textToSet) {
         logger.info("clearing input and typing: " + element + " " + textToSet);
         element.clear();
-        sendKeys(element, textToSet);
+        element.sendKeys(textToSet);
     }
 
-    public double getPrice(WebElement element) {
+    public static double getPrice(WebElement element) {
         return Double.parseDouble(element.getText().replace(System.getProperty("currencySymbolToReplace"), " "));
     }
 
@@ -79,6 +81,11 @@ public class BasePage {
             namesList.add(getTextOfWebElement(element));
         }
         return namesList;
+    }
+
+
+    public void waitForElementToBeClickable(WebElement element){
+        wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
     protected void mouseHover(WebElement element) {

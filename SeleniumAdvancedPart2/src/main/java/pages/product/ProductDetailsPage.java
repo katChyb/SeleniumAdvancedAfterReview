@@ -1,8 +1,10 @@
 package pages.product;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.BasePage;
 
 public class ProductDetailsPage extends BasePage {
@@ -13,7 +15,7 @@ public class ProductDetailsPage extends BasePage {
     @FindBy(css = ".add-to-cart")
     private WebElement addToCartBtn;
 
-    @FindBy(css = ".qty")
+    @FindBy(id = "quantity_wanted")
     private WebElement quantityInput;
 
     @FindBy(css = ".current-price")
@@ -24,11 +26,12 @@ public class ProductDetailsPage extends BasePage {
         click(addToCartBtn);
     }
 
-    public void setQuantity(int quantity) {
-        clearAndSendKeys(addToCartBtn, String.valueOf(quantity));
+    public void setQuantity(String quantity) {
+         waitForElementToBeClickable(quantityInput);
+        clearAndSendKeys(quantityInput, quantity);
     }
 
-    public double getPrice(){
+    public double getPrice() {
         return getPrice(price);
     }
 }
