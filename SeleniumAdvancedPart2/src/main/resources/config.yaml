@@ -22,6 +22,7 @@ environments:
     artCategoryText: Framed poster and vector images
     BasketPopupTestWantedProduct: THE BEST IS YET POSTER
     BasketPopupTestQuantity: 3
+    RepetitionForBasketCalculations: 5
     shippingPrice: 7
 
 

@@ -43,6 +43,12 @@ public class TopMenuPage extends BasePage {
     @FindBy(id = "category-7")
     public WebElement stationeryCategory;
 
+    @FindBy(id = "_desktop_logo")
+    public WebElement mainPageBtn;
+
+    @FindBy(id= "_desktop_cart")
+    public WebElement cartBtn;
+
 
     public void inputSearchProductByText(String text) {
         sendKeys(searchInputBox, text);
@@ -85,6 +91,13 @@ public class TopMenuPage extends BasePage {
         artCategory.click();
     }
 
+    public void goToMainPage() {
+        click(mainPageBtn);
+    }
+
+    public void goToCart(){
+        click(cartBtn);
+    }
 
     public TopMenuPage moveMouseToClothes() {
         mouseHover(clothesCategory);

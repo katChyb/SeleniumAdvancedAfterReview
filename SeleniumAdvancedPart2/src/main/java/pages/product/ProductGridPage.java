@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pages.BasePage;
@@ -31,9 +32,12 @@ public class ProductGridPage extends BasePage {
 
 
     public String getRandomProductNameFromGrid() {
+
         int gridListSize = productNamesFromGrid.size();
         return productNamesFromGrid.get(new Random().nextInt(gridListSize)).getText();
     }
+
+
 
     public String getNumberProductsFromGrid() {
         log.info("number products from grid: " + productNamesFromGrid.size());

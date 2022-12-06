@@ -3,9 +3,9 @@ package basekt;
 import base.Pages;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 
 public class BasketTest extends Pages {
-
 
 
     @RepeatedTest(10)
@@ -26,6 +26,26 @@ public class BasketTest extends Pages {
                 Double.parseDouble(System.getProperty("shippingPrice"))
         );
         softly.assertAll();
+
+    }
+
+
+    @RepeatedTest(1)
+    @Tag("Basket calculations test")
+    public void basketCalculationsTest() {
+
+        for (int i = 0; i < Integer.valueOf(System.getProperty("RepetitionForBasketCalculations")); i++) {
+            String productName = productGridPage.getRandomProductNameFromGrid();
+            topMenuPage.inputSearchProductByText(productName);
+            topMenuPage.triggerSearchProduct();
+            productGridPage.openSelectedProduct(productName);
+            productDetailsPage.setRandomQuantity();
+            productDetailsPage.addProductToCart();
+            cartPopup.clickOnProceedToCheckoutButton();
+            topMenuPage.goToMainPage();
+        }
+        topMenuPage.goToCart();
+
 
     }
 }
