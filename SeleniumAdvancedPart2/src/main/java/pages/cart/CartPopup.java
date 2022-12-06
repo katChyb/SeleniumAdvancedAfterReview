@@ -3,13 +3,15 @@ package pages.cart;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pages.BasePage;
 
 public class CartPopup extends BasePage {
     public CartPopup(WebDriver driver) {
         super(driver);
     }
-
+    private static Logger log = LoggerFactory.getLogger(CartPopup.class);
 
     @FindBy(css = ".product-name")
     private WebElement productName;
@@ -21,9 +23,11 @@ public class CartPopup extends BasePage {
     private WebElement summaryText;
     @FindBy(css = "a.btn")
     private WebElement proceedToCheckoutButton;
-
     @FindBy(id= "myModalLabel")
     private WebElement popupLabel;
+
+    @FindBy(css= ".cart-products-count")
+    private WebElement cartProductCount;
 
 
     public String getProductName() {
@@ -35,6 +39,7 @@ public class CartPopup extends BasePage {
     }
 
     public static Double getTotalPrice() {
+        log.info("total price is: " + getPrice(totalPrice));
         return getPrice(totalPrice);
     }
 
@@ -45,6 +50,11 @@ public class CartPopup extends BasePage {
 
     public void waitForPopupToBeVisible(){
         waitToBeVisible(popupLabel);
+    }
+
+    public String getCartProductCount(){
+       log.info("cart product count: "+ cartProductCount.getText());
+        return cartProductCount.getText();
     }
 
     public void clickOnProceedToCheckoutButton(){
