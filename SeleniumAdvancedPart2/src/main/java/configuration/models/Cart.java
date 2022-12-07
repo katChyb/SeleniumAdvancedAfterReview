@@ -14,12 +14,25 @@ public class Cart {
         this.totalOrderCost = totalOrderCost;
     }
 
+    public Cart() {
+
+    }
 
 
+    public void addProductToCart(Product product){
 
-    public void addProduct(Product product){
+// TODO
+        if (checkIfProductIsInCart(products, product.getProductName())) {
+            increaseQuantity(product);
+            recalculateTotalPrice(product);
+        } else {
+            products.add(product);
+        }
+        recalculateTotalOrderCost(product.getProductPrice(), product.getQuantity());
 
+    }
 
-
+    public boolean checkIfProductIsInCart(List<Product> productList, String name){
+        return productList.stream().anyMatch(product -> product.getProductName().contains(name));
     }
 }

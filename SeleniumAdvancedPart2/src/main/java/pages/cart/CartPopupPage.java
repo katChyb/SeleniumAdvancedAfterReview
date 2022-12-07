@@ -7,11 +7,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pages.BasePage;
 
-public class CartPopup extends BasePage {
-    public CartPopup(WebDriver driver) {
+public class CartPopupPage extends BasePage {
+    public CartPopupPage(WebDriver driver) {
         super(driver);
     }
-    private static Logger log = LoggerFactory.getLogger(CartPopup.class);
+    private static Logger log = LoggerFactory.getLogger(CartPopupPage.class);
 
     @FindBy(css = ".product-name")
     private WebElement productName;
