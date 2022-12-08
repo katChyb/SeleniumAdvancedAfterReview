@@ -32,17 +32,4 @@ public class CartDetailsPage extends BasePage {
             return cart;
     }
 
-//TODO
-
-    public void checkIfProductIsInCart(){
-      {
-            String nameOfProduct = cartProductsList.get(0).findElement(new By.ByCssSelector(".product-title")).getText();
-            log.info("name of found product " + nameOfProduct);
-            return nameOfProduct;
-        }
-    }
-
-
-
-
 }

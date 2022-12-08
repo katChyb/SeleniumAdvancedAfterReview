@@ -1,27 +1,31 @@
 package configuration.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
+@Data
+@NoArgsConstructor
 public class Cart {
 
 
-    private List<Product> products;
-    private BigDecimal totalOrderCost;
+    private List<Product> products = new ArrayList<>();
+    private BigDecimal totalOrderCost = new BigDecimal("0.00");
+
 
     public Cart(List<Product> products, BigDecimal totalOrderCost) {
         this.products = products;
         this.totalOrderCost = totalOrderCost;
     }
 
-    public Cart() {
 
-    }
+    public void addProductToCart(Product product) {
 
 
-    public void addProductToCart(Product product){
-
-// TODO
         if (checkIfProductIsInCart(products, product.getProductName())) {
             increaseQuantity(product);
             recalculateTotalPrice(product);
@@ -32,7 +36,28 @@ public class Cart {
 
     }
 
-    public boolean checkIfProductIsInCart(List<Product> productList, String name){
-        return productList.stream().anyMatch(product -> product.getProductName().contains(name));
+
+    private boolean checkIfProductIsInCart(List<Product> productList, String name) {
+        for (Product products : productList) {
+            if (productList.stream().anyMatch(product -> product.getProductName().equals(name)));
+            return true;
+        }
+        return false;
+    }
+
+    private void increaseQuantity(Product product) {
+        Product tempProduct = product;
+        int quantity = tempProduct.getQuantity();
+        tempProduct.setQuantity(quantity + tempProduct.getQuantity());
+    }
+
+  private void  recalculateTotalPrice(Product product){
+      Product tempProduct = product;
+      tempProduct.setTotalPrice(tempProduct.getProductPrice()*tempProduct.getQuantity());
+  }
+
+
+    private void recalculateTotalOrderCost(Double productPrice, int productQuantity) {
+        totalOrderCost = totalOrderCost.add(new BigDecimal(productPrice*productQuantity));
     }
 }

@@ -5,6 +5,8 @@ import configuration.models.Cart;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Tag;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class BasketTest extends Pages {
 
 
@@ -50,6 +52,7 @@ public class BasketTest extends Pages {
 
         Cart actualCart = cartDetailsPage.toCartDetails();
 
+        assertThat(actualCart).usingRecursiveComparison().isEqualTo(expectedCart);
 
     }
 }

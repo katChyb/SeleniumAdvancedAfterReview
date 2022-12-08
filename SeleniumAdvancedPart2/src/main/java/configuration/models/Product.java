@@ -26,8 +26,7 @@ public class Product {
         this.quantity = Integer.parseInt(cartItem.findElement(By.cssSelector(".js-cart-line-product-quantity")).
                 getAttribute("value"));
         this.totalPrice = Double.parseDouble(cartItem.findElement(By.cssSelector(".product-price strong")).getText().
-                replace(System.getProperty("currency"),""));
-
+                replace(System.getProperty("currencySymbolToReplace"),""));
     }
 
 }
