@@ -27,7 +27,7 @@ public class ProductDetailsPage extends BasePage {
     @FindBy(id = "quantity_wanted")
     private WebElement quantityInput;
 
-    @FindBy(css = ".current-price")
+    @FindBy(css = "span[itemprop='price']")
     private WebElement price;
 
     @FindBy(css = "h1[itemprop='name']")
@@ -38,12 +38,11 @@ public class ProductDetailsPage extends BasePage {
         click(addToCartBtn);
     }
 
-    public CartPopupPage addToCart(Cart cart) {
 
-        Product product = new Product(getProductName(), getPrice(), getPrice()*getQuantity(), getQuantity());
+    public void addToCart(Cart cart) {
+        Product product = new Product(getProductName(), getPrice(), getPrice() * getQuantity(), getQuantity());
         cart.addProductToCart(product);
         click(addToCartBtn);
-        return new CartPopupPage(driver);
     }
 
 
@@ -63,11 +62,11 @@ public class ProductDetailsPage extends BasePage {
         return getPrice(price);
     }
 
-    public String getProductName(){
+    public String getProductName() {
         return getTextOfWebElement(productName);
     }
 
-    public Integer getQuantity(){
+    public Integer getQuantity() {
         return Integer.parseInt(getValue(quantityInput));
     }
 }

@@ -32,7 +32,7 @@ public class BasketTest extends Pages {
     }
 
 
-    @RepeatedTest(1)
+    @RepeatedTest(10)
     @Tag("Basket calculations test")
     public void basketCalculationsTest() {
 
@@ -44,7 +44,7 @@ public class BasketTest extends Pages {
             topMenuPage.triggerSearchProduct();
             productGridPage.openSelectedProduct(productName);
             productDetailsPage.setRandomQuantity();
-            productDetailsPage.addProductToCart();
+            productDetailsPage.addToCart(expectedCart);
             cartPopupPage.clickOnProceedToCheckoutButton();
             topMenuPage.goToMainPage();
         }

@@ -62,4 +62,5 @@ public class CartPopupPage extends BasePage {
         click(proceedToCheckoutButton);
     }
 
+    //TODo zrobic metode pobierajaca np product set title  tworzącą nowy produkt    public ptoduct  (){return new product }
 }

@@ -24,8 +24,6 @@ public class Cart {
 
 
     public void addProductToCart(Product product) {
-
-
         if (checkIfProductIsInCart(products, product.getProductName())) {
             increaseQuantity(product);
             recalculateTotalPrice(product);
@@ -33,13 +31,12 @@ public class Cart {
             products.add(product);
         }
         recalculateTotalOrderCost(product.getProductPrice(), product.getQuantity());
-
     }
 
 
     private boolean checkIfProductIsInCart(List<Product> productList, String name) {
         for (Product products : productList) {
-            if (productList.stream().anyMatch(product -> product.getProductName().equals(name)));
+            if (productList.stream().anyMatch(product -> product.getProductName().equals(name))) ;
             return true;
         }
         return false;
@@ -51,13 +48,13 @@ public class Cart {
         tempProduct.setQuantity(quantity + tempProduct.getQuantity());
     }
 
-  private void  recalculateTotalPrice(Product product){
-      Product tempProduct = product;
-      tempProduct.setTotalPrice(tempProduct.getProductPrice()*tempProduct.getQuantity());
-  }
+    private void recalculateTotalPrice(Product product) {
+        Product tempProduct = product;
+        tempProduct.setTotalPrice(tempProduct.getProductPrice() * tempProduct.getQuantity());
+    }
 
 
     private void recalculateTotalOrderCost(Double productPrice, int productQuantity) {
-        totalOrderCost = totalOrderCost.add(new BigDecimal(productPrice*productQuantity));
+        totalOrderCost = totalOrderCost.add(new BigDecimal(productPrice * productQuantity));
     }
 }
