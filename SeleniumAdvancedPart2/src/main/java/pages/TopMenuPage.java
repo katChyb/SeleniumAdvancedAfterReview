@@ -49,6 +49,9 @@ public class TopMenuPage extends BasePage {
     @FindBy(id= "_desktop_cart")
     public WebElement cartBtn;
 
+    @FindBy(id = "_desktop_user_info")
+    private WebElement signInButton;
+
 
     public void inputSearchProductByText(String text) {
         sendKeys(searchInputBox, text);
@@ -128,6 +131,8 @@ public class TopMenuPage extends BasePage {
     public String getProductListHeader() {
         return productListHeader.getText();
     }
+
+    public void signIn() { click(signInButton); }
 
 
 }

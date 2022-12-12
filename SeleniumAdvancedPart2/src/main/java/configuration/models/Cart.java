@@ -3,18 +3,22 @@ package configuration.models;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import pages.product.ProductDetailsPage;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
 @NoArgsConstructor
 public class Cart {
-
+    private static Logger log = LoggerFactory.getLogger(Cart.class);
 
     private List<Product> products = new ArrayList<>();
-    private BigDecimal totalOrderCost = new BigDecimal("0.00");
+    private BigDecimal totalOrderCost = new BigDecimal(0.00);
 
 
     public Cart(List<Product> products, BigDecimal totalOrderCost) {
@@ -55,6 +59,9 @@ public class Cart {
 
 
     private void recalculateTotalOrderCost(Double productPrice, int productQuantity) {
+
         totalOrderCost = totalOrderCost.add(new BigDecimal(productPrice * productQuantity));
+        totalOrderCost = totalOrderCost.setScale(2, RoundingMode.HALF_UP);
+        log.info("totalOrderCost: "+ totalOrderCost);
     }
 }

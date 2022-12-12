@@ -45,6 +45,7 @@ public class BasketTest extends Pages {
             productGridPage.openSelectedProduct(productName);
             productDetailsPage.setRandomQuantity();
             productDetailsPage.addToCart(expectedCart);
+            cartPopupPage.waitForPopupToBeVisible();
             cartPopupPage.clickOnProceedToCheckoutButton();
             topMenuPage.goToMainPage();
         }
