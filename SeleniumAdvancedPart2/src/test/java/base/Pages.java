@@ -7,6 +7,8 @@ import org.openqa.selenium.interactions.Actions;
 import pages.TopMenuPage;
 import pages.cart.CartDetailsPage;
 import pages.cart.CartPopupPage;
+import pages.checout.CheckoutPage;
+import pages.logInPage.LogInPage;
 import pages.user.MyAccountPage;
 import pages.user.RegistrationPage;
 import pages.user.SignInPage;
@@ -24,8 +26,10 @@ public class Pages extends BaseTest {
     public MyAccountPage myAccountPage;
     public FilterPage filterPage;
     public CartDetailsPage cartDetailsPage;
-
     public CartPopupPage cartPopupPage;
+    public LogInPage logInPage;
+
+    public CheckoutPage checkoutPage;
     public SoftAssertions softly;
     public Actions action;
 
@@ -41,6 +45,8 @@ public class Pages extends BaseTest {
         filterPage = new FilterPage(driver);
         cartDetailsPage = new CartDetailsPage(driver);
         cartPopupPage = new CartPopupPage(driver);
+        logInPage = new LogInPage(driver);
+        checkoutPage = new CheckoutPage(driver);
         softly = new SoftAssertions();
         action = new Actions(driver);
     }

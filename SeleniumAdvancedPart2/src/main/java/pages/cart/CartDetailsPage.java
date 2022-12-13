@@ -15,21 +15,27 @@ public class CartDetailsPage extends BasePage {
         super(driver);
     }
 
-    @FindBy(id= "_desktop_cart")
-  public  WebElement cartBtn;
+    @FindBy(id = "_desktop_cart")
+    public WebElement cartBtn;
 
     @FindBy(css = ".cart-item")
     private List<WebElement> cartProductsList;
 
+    @FindBy(css = ".card-block > div > a")
+    private WebElement proceedToCheckoutBtn;
 
+    public Cart toCartDetails() {
+        Cart cart = new Cart();
 
-    public Cart toCartDetails(){
-        Cart cart =new Cart();
-
-        for (WebElement cartProducts: cartProductsList){
+        for (WebElement cartProducts : cartProductsList) {
             cart.addProductToCart(new Product(cartProducts));
         }
-            return cart;
+        return cart;
+    }
+
+
+    public void proceedToCheckout() {
+        click(proceedToCheckoutBtn);
     }
 
 }

@@ -24,6 +24,8 @@ environments:
     BasketPopupTestQuantity: 3
     RepetitionForBasketCalculations: 5
     shippingPrice: 7
+    email: gandalf@10g.pl
+    password: test123
 
 
 

@@ -132,7 +132,7 @@ public class TopMenuPage extends BasePage {
         return productListHeader.getText();
     }
 
-    public void signIn() { click(signInButton); }
+    public void openLogInPage() { click(signInButton); }
 
 
 }

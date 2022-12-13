@@ -7,11 +7,28 @@ import org.junit.jupiter.api.RepeatedTest;
 public class CheckoutTests extends Pages {
 
 
-    @RepeatedTest(10)
+    @RepeatedTest(1)
     @DisplayName("Checkout tests")
     public void checkoutTests() {
 
-        topMenuPage.signIn();
+        topMenuPage.openLogInPage();
+        logInPage.fillInEmail();
+        logInPage.fillInPassword();
+        logInPage.signIn();
+//        productGridPage.openSelectedProduct(System.getProperty("BasketPopupTestWantedProduct"));
+//        productDetailsPage.addProductToCart();
+//        cartPopupPage.clickOnProceedToCheckoutButton();
+
+
+        topMenuPage.inputSearchProductByText(System.getProperty("BasketPopupTestWantedProduct"));
+        topMenuPage.triggerSearchProduct();
+        productGridPage.openSelectedProduct(System.getProperty("BasketPopupTestWantedProduct"));
+        productDetailsPage.addProductToCart();
+        cartPopupPage.waitForPopupToBeVisible();
+        cartPopupPage.clickOnProceedToCheckoutButton();
+        cartDetailsPage.proceedToCheckout();
+        checkoutPage.unmarkUseSameAddress();
+        checkoutPage.fillInAddress();
 
     }
 }
