@@ -52,6 +52,9 @@ public class TopMenuPage extends BasePage {
     @FindBy(id = "_desktop_user_info")
     private WebElement signInButton;
 
+    @FindBy(css = "#_desktop_user_info .account")
+    private WebElement myAccountLink;
+
 
     public void inputSearchProductByText(String text) {
         sendKeys(searchInputBox, text);
@@ -134,5 +137,7 @@ public class TopMenuPage extends BasePage {
 
     public void openLogInPage() { click(signInButton); }
 
-
+    public void openMyAccountMenu() {
+        click(myAccountLink);
+    }
 }

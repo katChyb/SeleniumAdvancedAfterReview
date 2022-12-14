@@ -10,6 +10,7 @@ import pages.cart.CartPopupPage;
 import pages.checout.CheckoutPage;
 import pages.logInPage.LogInPage;
 import pages.user.MyAccountPage;
+import pages.user.OrderHistoryPage;
 import pages.user.RegistrationPage;
 import pages.user.SignInPage;
 import pages.product.FilterPage;
@@ -30,6 +31,8 @@ public class Pages extends BaseTest {
     public LogInPage logInPage;
 
     public CheckoutPage checkoutPage;
+
+    public OrderHistoryPage orderHistoryPage;
     public SoftAssertions softly;
     public Actions action;
 
@@ -47,6 +50,7 @@ public class Pages extends BaseTest {
         cartPopupPage = new CartPopupPage(driver);
         logInPage = new LogInPage(driver);
         checkoutPage = new CheckoutPage(driver);
+        orderHistoryPage = new OrderHistoryPage(driver);
         softly = new SoftAssertions();
         action = new Actions(driver);
     }

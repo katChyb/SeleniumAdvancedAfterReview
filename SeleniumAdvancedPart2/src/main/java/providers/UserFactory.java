@@ -18,10 +18,4 @@ public class UserFactory {
                 .build();
     }
 
-    public static User getAlreadyRegisterUser(){
-        return User.builder()
-                .email(System.getProperty("email"))
-                .password(System.getProperty("password"))
-                .build();
-    }
 }

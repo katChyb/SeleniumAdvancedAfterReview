@@ -12,8 +12,6 @@ public class LogInPage extends BasePage {
         super(driver);
     }
 
-    User registeredUser = UserFactory.getAlreadyRegisterUser();
-
 
     @FindBy(css = "div.col-md-6 input[name='email']")
     private WebElement emailInput;
@@ -25,11 +23,11 @@ public class LogInPage extends BasePage {
     private WebElement signInButton;
 
 
-    public void fillInEmail(){
-        sendKeys(emailInput, registeredUser.getEmail());
+    public void fillInEmailForAlredyExistingUser(){
+        sendKeys(emailInput, System.getProperty("email"));
     }
-    public void fillInPassword(){
-        sendKeys(passwordInput, registeredUser.getPassword());
+    public void fillInPasswordForAlredyExistingUser(){
+        sendKeys(passwordInput, System.getProperty("password"));
     }
     public void signIn(){
         click(signInButton);

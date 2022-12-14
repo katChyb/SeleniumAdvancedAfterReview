@@ -12,23 +12,32 @@ public class CheckoutTests extends Pages {
     public void checkoutTests() {
 
         topMenuPage.openLogInPage();
-        logInPage.fillInEmail();
-        logInPage.fillInPassword();
+        logInPage.fillInEmailForAlredyExistingUser();
+        logInPage.fillInPasswordForAlredyExistingUser();
         logInPage.signIn();
-//        productGridPage.openSelectedProduct(System.getProperty("BasketPopupTestWantedProduct"));
-//        productDetailsPage.addProductToCart();
-//        cartPopupPage.clickOnProceedToCheckoutButton();
-
-
         topMenuPage.inputSearchProductByText(System.getProperty("BasketPopupTestWantedProduct"));
         topMenuPage.triggerSearchProduct();
         productGridPage.openSelectedProduct(System.getProperty("BasketPopupTestWantedProduct"));
+        String procuctPrice = String.valueOf(productDetailsPage.getPrice());
         productDetailsPage.addProductToCart();
         cartPopupPage.waitForPopupToBeVisible();
         cartPopupPage.clickOnProceedToCheckoutButton();
         cartDetailsPage.proceedToCheckout();
-        checkoutPage.unmarkUseSameAddress();
-        checkoutPage.fillInAddress();
+        String deliveryAddress = checkoutPage.getDeliveryAddress();
+
+        checkoutPage.differentInvoiceAddress();
+        checkoutPage.fillInInvoiceAddress();
+        String invoiceAddress = checkoutPage.getInvoiceAddress();
+
+        checkoutPage.confirmDeliveryOption();
+        checkoutPage.payByCheckMethod();
+        checkoutPage.acceptTermsOfService();
+        checkoutPage.placeOrder();
+        String orderReference = checkoutPage.getOrderReference();
+        topMenuPage.openMyAccountMenu();
+        myAccountPage.openOrderHistoryDetails();
+        orderHistoryPage.openDetailsByName(orderReference);
+
 
     }
 }
