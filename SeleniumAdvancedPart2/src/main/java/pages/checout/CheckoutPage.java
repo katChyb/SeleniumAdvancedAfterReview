@@ -8,7 +8,6 @@ import org.openqa.selenium.support.ui.Select;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pages.BasePage;
-import pages.cart.CartPopupPage;
 import providers.AddressFactory;
 
 public class CheckoutPage extends BasePage {
@@ -38,6 +37,9 @@ public class CheckoutPage extends BasePage {
     @FindBy(css = "button[name='confirm-addresses']")
     private WebElement confirmAddressBtn;
 
+    @FindBy(css = "#checkout-addresses-step")
+    private WebElement addressTab;
+
     @FindBy(css = "button[name='confirmDeliveryOption']")
     private WebElement confirmDeliveryOptionBtn;
 
@@ -62,6 +64,7 @@ public class CheckoutPage extends BasePage {
 
     @FindBy(css = "#invoice-addresses .selected .address")
     private WebElement invoiceAddress;
+
 
     @FindBy(css = "#payment-confirmation button")
     private WebElement placeOrderBtn;
@@ -93,8 +96,16 @@ public class CheckoutPage extends BasePage {
         sendKeys(cityInput, address.getCity());
 
         click(confirmAddressBtn);
+
+        click(addressTab);
     }
 
+
+    public void openShippingMethodForm(){
+        waitForElementToBeClickable(confirmAddressBtn);
+        click(confirmAddressBtn);
+
+    }
     public String getDeliveryAddress() {
         return getTextOfWebElement(selectedDeliveryAddress);
     }
@@ -115,6 +126,8 @@ public class CheckoutPage extends BasePage {
     }
 
     public String getInvoiceAddress() {
+        log.info("Invoice Address:" + getTextOfWebElement(invoiceAddress));
+        waitToBeVisible(invoiceAddress);
         return getTextOfWebElement(invoiceAddress);
     }
 
@@ -134,6 +147,6 @@ public class CheckoutPage extends BasePage {
     public String getOrderReference() {
         String reference = getTextOfWebElement(orderReference).replace("Order reference: ", "");
         log.info("reference: " + reference);
-        return null;
+        return reference;
     }
 }

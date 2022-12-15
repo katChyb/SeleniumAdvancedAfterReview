@@ -23,8 +23,8 @@ public class OrderHistoryPage extends BasePage {
     public void openDetailsByName(String orderNumber){
         for (WebElement order : orders) {
             if(order.findElement(By.cssSelector("th")).getText().equals(orderNumber)){
-                click(order.findElement(By.xpath("td[@class='text-sm-center order-actions']/a[1]")));
-            }  //css  td.text-sm-center.order-actions
+             click(order.findElement(By.xpath("td[@class='text-sm-center order-actions']/a[1]")));
+            }
             break;
         }
     }

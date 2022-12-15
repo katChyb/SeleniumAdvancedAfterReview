@@ -26,6 +26,7 @@ environments:
     shippingPrice: 7
     email: gandalf@10g.pl
     password: test123
+    paymentStatus: Awaiting check payment
 
 
 
